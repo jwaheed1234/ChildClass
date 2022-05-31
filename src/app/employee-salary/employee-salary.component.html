@@ -1,0 +1,32 @@
+<table class="table table-striped">        
+    <thead class="thead-dark"></thead>
+    <tr>
+        <th scope="col">Employee ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Credits</th>
+        <th scope="col">Eligbile For Promotion</th>
+        <!--ONLY ELEIGBLE FOR PROMOTION IF CREDIT IS GREATER THAN 5 AND SALARY GREATER THAN 9000-->
+    </tr>
+
+    <tr *ngFor="let emp of employeeList ">
+        <td>{{emp.employeeid}}</td>
+        <td>{{emp.name}}</td>
+        <!--CURRENCY IS JUST FOR EXAMPLE USD, INR , EU examples of diff currencies that can be used-->
+        <td>{{emp.salary | currency: "USD" }}</td>
+        <td>{{emp.description}}</td>
+        <td>{{emp.credits}}</td>
+
+        <td>
+            <div *ngIf="emp.salary > 9000 && emp.credits > 5; else elseBlock">
+                YES
+            </div>
+            <ng-template #elseBlock> 
+                NO
+            </ng-template>
+        </td>
+        </tr>
+
+</table>
+
